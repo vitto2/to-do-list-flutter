@@ -22,6 +22,29 @@ class _HomeState extends State<Home> {
         ),
         backgroundColor: Colors.white,
       ),
+      body: SizedBox(
+        width: MediaQuery.of(context).size.width,
+        child: Column(
+          children: [
+            Row(
+              children: [
+                SizedBox(
+                  width: (MediaQuery.of(context).size.width / 100) * 80,
+                  child: TextFormField(),
+                ),
+                SizedBox(
+                  width: (MediaQuery.of(context).size.width / 100) * 15,
+                  height: 40,
+                  child: ElevatedButton(
+                    onPressed: () {},
+                    child: const Icon(Icons.add),
+                  ),
+                ),
+              ],
+            )
+          ],
+        ),
+      ),
     );
   }
 }
