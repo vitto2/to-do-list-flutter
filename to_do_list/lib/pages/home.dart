@@ -30,13 +30,22 @@ class _HomeState extends State<Home> {
               children: [
                 SizedBox(
                   width: (MediaQuery.of(context).size.width / 100) * 80,
-                  child: TextFormField(),
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: TextFormField(
+                      decoration: const InputDecoration(
+                          enabledBorder: OutlineInputBorder()),
+                    ),
+                  ),
                 ),
                 SizedBox(
                   width: (MediaQuery.of(context).size.width / 100) * 20,
                   height: 40,
                   child: Center(
                     child: ElevatedButton(
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.black,
+                      ),
                       onPressed: () {},
                       child: const Icon(Icons.add),
                     ),
