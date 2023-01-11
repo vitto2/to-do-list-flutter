@@ -33,11 +33,13 @@ class _HomeState extends State<Home> {
                   child: TextFormField(),
                 ),
                 SizedBox(
-                  width: (MediaQuery.of(context).size.width / 100) * 15,
+                  width: (MediaQuery.of(context).size.width / 100) * 20,
                   height: 40,
-                  child: ElevatedButton(
-                    onPressed: () {},
-                    child: const Icon(Icons.add),
+                  child: Center(
+                    child: ElevatedButton(
+                      onPressed: () {},
+                      child: const Icon(Icons.add),
+                    ),
                   ),
                 ),
               ],
