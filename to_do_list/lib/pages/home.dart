@@ -8,6 +8,10 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  TextEditingController controller = TextEditingController();
+
+  late List<String> values = [];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,8 +37,11 @@ class _HomeState extends State<Home> {
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: TextFormField(
+                      controller: controller,
                       decoration: const InputDecoration(
-                          enabledBorder: OutlineInputBorder()),
+                        enabledBorder: OutlineInputBorder(),
+                        focusedBorder: OutlineInputBorder(),
+                      ),
                     ),
                   ),
                 ),
@@ -46,13 +53,34 @@ class _HomeState extends State<Home> {
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.black,
                       ),
-                      onPressed: () {},
+                      onPressed: () {
+                        setState(() {
+                          values.add(controller.text);
+                        });
+                      },
                       child: const Icon(Icons.add),
                     ),
                   ),
                 ),
               ],
-            )
+            ),
+            const SizedBox(
+              height: 60,
+            ),
+            ListView.builder(
+              scrollDirection: Axis.vertical,
+              shrinkWrap: true,
+              itemCount: values.length,
+              itemBuilder: ((context, index) {
+                return SizedBox(
+                  child: ListTile(
+                    leading: const Icon(Icons.remove),
+                    title: Text(values[index]),
+                    trailing: const Icon(Icons.favorite),
+                  ),
+                );
+              }),
+            ),
           ],
         ),
       ),
