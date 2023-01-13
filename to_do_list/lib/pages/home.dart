@@ -74,6 +74,11 @@ class _HomeState extends State<Home> {
               itemBuilder: ((context, index) {
                 return SizedBox(
                   child: ListTile(
+                    onLongPress: () {
+                      setState(() {
+                        values.removeAt(index);
+                      });
+                    },
                     leading: const Icon(Icons.remove),
                     title: Text(values[index]),
                     trailing: const Icon(Icons.favorite),
