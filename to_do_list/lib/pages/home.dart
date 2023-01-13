@@ -11,6 +11,7 @@ class _HomeState extends State<Home> {
   TextEditingController controller = TextEditingController();
 
   late List<String> values = [];
+  Color? colorFavoriteIcon = Colors.grey[400];
 
   @override
   Widget build(BuildContext context) {
@@ -79,9 +80,26 @@ class _HomeState extends State<Home> {
                         values.removeAt(index);
                       });
                     },
-                    leading: const Icon(Icons.remove),
+                    leading: const Icon(
+                      Icons.remove,
+                      color: Colors.red,
+                    ),
                     title: Text(values[index]),
-                    trailing: const Icon(Icons.favorite),
+                    trailing: GestureDetector(
+                      onTap: () {
+                        setState(() {
+                          if (colorFavoriteIcon == Colors.grey[400]) {
+                            colorFavoriteIcon = Colors.red;
+                          } else {
+                            colorFavoriteIcon = Colors.grey[400];
+                          }
+                        });
+                      },
+                      child: Icon(
+                        Icons.favorite,
+                        color: colorFavoriteIcon,
+                      ),
+                    ),
                   ),
                 );
               }),
