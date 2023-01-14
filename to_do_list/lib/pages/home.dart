@@ -76,16 +76,9 @@ class _HomeState extends State<Home> {
                 return SizedBox(
                   child: ListTile(
                     onLongPress: () {
-                      setState(() {
-                        values.removeAt(index);
-                      });
+                      setState(() => values.removeAt(index));
                     },
-                    leading: const Icon(
-                      Icons.remove,
-                      color: Colors.red,
-                    ),
-                    title: Text(values[index]),
-                    trailing: GestureDetector(
+                    leading: GestureDetector(
                       onTap: () {
                         setState(() {
                           if (colorFavoriteIcon == Colors.grey[400]) {
@@ -100,6 +93,18 @@ class _HomeState extends State<Home> {
                         color: colorFavoriteIcon,
                       ),
                     ),
+                    trailing: GestureDetector(
+                      onTap: (() => setState(
+                            () {
+                              values.isNotEmpty ? values.removeAt(index) : null;
+                            },
+                          )),
+                      child: const Icon(
+                        Icons.remove,
+                        color: Colors.red,
+                      ),
+                    ),
+                    title: Text(values[index]),
                   ),
                 );
               }),
