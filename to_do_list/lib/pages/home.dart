@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:to_do_list/pages/button.dart';
+import 'package:to_do_list/pages/listviewitems.dart';
+import 'package:to_do_list/pages/textFormField.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -8,10 +11,9 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  TextEditingController controller = TextEditingController();
+  List<String> values = [];
 
-  late List<String> values = [];
-  Color? colorFavoriteIcon = Colors.grey[400];
+  TextEditingController controller = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -36,79 +38,27 @@ class _HomeState extends State<Home> {
                 SizedBox(
                   width: (MediaQuery.of(context).size.width / 100) * 80,
                   child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: TextFormField(
-                      controller: controller,
-                      decoration: const InputDecoration(
-                        enabledBorder: OutlineInputBorder(),
-                        focusedBorder: OutlineInputBorder(),
-                      ),
-                    ),
-                  ),
+                      padding: const EdgeInsets.all(8.0),
+                      child: Mytextformfield(controller: controller)),
                 ),
                 SizedBox(
                   width: (MediaQuery.of(context).size.width / 100) * 20,
                   height: 40,
                   child: Center(
-                    child: ElevatedButton(
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.black,
-                      ),
-                      onPressed: () {
-                        setState(() {
-                          values.add(controller.text);
-                        });
-                      },
-                      child: const Icon(Icons.add),
-                    ),
-                  ),
+                      child: Mybutton(
+                    list: values,
+                    text: controller.text,
+                  )),
                 ),
               ],
             ),
             const SizedBox(
               height: 20,
             ),
-            ListView.builder(
-              scrollDirection: Axis.vertical,
-              shrinkWrap: true,
+            Mylistview(
               itemCount: values.length,
-              itemBuilder: ((context, index) {
-                return SizedBox(
-                  child: ListTile(
-                    onLongPress: () {
-                      setState(() => values.removeAt(index));
-                    },
-                    leading: GestureDetector(
-                      onTap: () {
-                        setState(() {
-                          if (colorFavoriteIcon == Colors.grey[400]) {
-                            colorFavoriteIcon = Colors.red;
-                          } else {
-                            colorFavoriteIcon = Colors.grey[400];
-                          }
-                        });
-                      },
-                      child: Icon(
-                        Icons.favorite,
-                        color: colorFavoriteIcon,
-                      ),
-                    ),
-                    trailing: GestureDetector(
-                      onTap: (() => setState(
-                            () {
-                              values.isNotEmpty ? values.removeAt(index) : null;
-                            },
-                          )),
-                      child: const Icon(
-                        Icons.remove,
-                        color: Colors.red,
-                      ),
-                    ),
-                    title: Text(values[index]),
-                  ),
-                );
-              }),
-            ),
+              listItems: values,
+            )
           ],
         ),
       ),
