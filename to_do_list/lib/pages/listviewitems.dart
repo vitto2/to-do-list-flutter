@@ -3,10 +3,11 @@ import 'package:flutter/material.dart';
 class Mylistview extends StatefulWidget {
   Mylistview({required listItems, required itemCount, super.key}) {
     itemCountValue = itemCount;
+    listItemsValue = listItems;
   }
 
   Color? colorFavoriteIcon = Colors.grey[400];
-  late List listItems; 
+  late List listItemsValue;
   late int itemCountValue;
 
   @override
@@ -24,7 +25,7 @@ class _MylistviewState extends State<Mylistview> {
         return SizedBox(
           child: ListTile(
             onLongPress: () {
-              setState(() => widget.listItems.removeAt(index));
+              setState(() => widget.listItemsValue.removeAt(index));
             },
             leading: GestureDetector(
               onTap: () {
@@ -44,7 +45,9 @@ class _MylistviewState extends State<Mylistview> {
             trailing: GestureDetector(
               onTap: (() => setState(
                     () {
-                      widget.listItems.isNotEmpty ? widget.listItems.removeAt(index) : null;
+                      widget.listItemsValue.isNotEmpty
+                          ? widget.listItemsValue.removeAt(index)
+                          : null;
                     },
                   )),
               child: const Icon(
@@ -52,7 +55,7 @@ class _MylistviewState extends State<Mylistview> {
                 color: Colors.red,
               ),
             ),
-            title: Text(widget.listItems[index]),
+            title: Text(widget.listItemsValue[index]),
           ),
         );
       }),

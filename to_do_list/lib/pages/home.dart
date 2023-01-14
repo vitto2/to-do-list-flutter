@@ -38,8 +38,9 @@ class _HomeState extends State<Home> {
                 SizedBox(
                   width: (MediaQuery.of(context).size.width / 100) * 80,
                   child: Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Mytextformfield(controller: controller)),
+                    padding: const EdgeInsets.all(8.0),
+                    child: Mytextformfield(controller: controller),
+                  ),
                 ),
                 SizedBox(
                   width: (MediaQuery.of(context).size.width / 100) * 20,

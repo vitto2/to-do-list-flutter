@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
 
-class Mytextformfield extends StatelessWidget {
-  Mytextformfield({required controller, super.key});
+class Mytextformfield extends StatefulWidget {
+  const Mytextformfield({required controller, super.key});
 
+  @override
+  State<Mytextformfield> createState() => _MytextformfieldState();
+}
+
+class _MytextformfieldState extends State<Mytextformfield> {
   TextEditingController? controller;
 
   @override

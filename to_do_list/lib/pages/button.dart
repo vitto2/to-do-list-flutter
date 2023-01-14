@@ -5,10 +5,8 @@ class Mybutton extends StatefulWidget {
     value = text;
     values = list;
   }
-
   late String value;
   List<String> values = [];
-
   @override
   State<Mybutton> createState() => _MybuttonState();
 }
